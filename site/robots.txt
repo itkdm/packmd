@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://itkdm.github.io/packmd/sitemap.xml
+Sitemap: https://packmd.itkdm.com/sitemap.xml
 
 # Disallow specific paths if needed
 # Disallow: /private/

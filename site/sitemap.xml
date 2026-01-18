@@ -2,11 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://itkdm.github.io/packmd/</loc>
+    <loc>https://packmd.itkdm.com/</loc>
     <lastmod>2026-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://itkdm.github.io/packmd/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://itkdm.github.io/packmd/"/>
+    <xhtml:link rel="alternate" hreflang="zh-CN" href="https://packmd.itkdm.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://packmd.itkdm.com/"/>
   </url>
 </urlset>
