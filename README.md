@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![PackMD Logo](./packmd/logo.png)
+<img src="./packmd/logo.png" alt="PackMD Logo" width="120" height="120">
 
 **扫描 Markdown 图片引用，复制为本地 assets 并重写链接，支持多文件与可选备份**
 
