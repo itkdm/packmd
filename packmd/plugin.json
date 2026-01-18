@@ -1,0 +1,22 @@
+{
+  "logo": "logo.png",
+  "main": "index.html",
+  "preload": "preload.js",
+  "name": "PackMD",
+  "description": "扫描 Markdown 图片引用，复制为本地 assets 并重写链接，支持多文件与可选备份。",
+  "author": "布吉岛",
+  "homepage": "https://itkdm.github.io/packmd/",
+  "version": "0.2.0",
+  "features": [
+    {
+      "code": "packmd",
+      "explain": "打包 Markdown 图片",
+      "cmds": [
+        "packmd",
+        "打包Markdown图片",
+        "markdown图片打包"
+      ]
+    }
+  ]
+}
+

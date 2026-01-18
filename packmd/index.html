@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PackMD - Markdown 图片打包</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="bg">
+      <span class="orb orb-1"></span>
+      <span class="orb orb-2"></span>
+      <span class="orb orb-3"></span>
+    </div>
+
+    <div id="app" class="app">
+      <header class="hero">
+        <div class="hero-top">
+          <span class="badge">布吉岛</span>
+          <h1>PackMD</h1>
+        </div>
+        <div class="hero-main">
+          <p>
+            批量扫描 Markdown 图片，集中复制到资源目录并改为相对路径。
+            支持多文件/文件夹、可选备份与重复图片去重。
+          </p>
+          <div class="hero-chips">
+            <span>批量扫描</span>
+            <span>资源归档</span>
+            <span>路径重写</span>
+            <span>重复去重</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="panel controls">
+        <div class="row row-select">
+          <div class="label">选择目标</div>
+          <div class="button-group">
+            <button id="btn-select-files" class="btn">选择文件</button>
+            <button id="btn-select-folders" class="btn ghost">选择文件夹</button>
+          </div>
+          <div id="selected-path-wrap" class="path-chip-wrap hidden">
+            <div id="selected-path" class="path-chip"></div>
+            <button id="clear-path" class="path-clear" title="清除">×</button>
+          </div>
+        </div>
+        <div class="row row-inputs row-inputs-main">
+          <label class="field assets-field">
+            <span>资源目录名</span>
+            <div class="assets-input-wrap">
+              <input id="assets-dir" type="text" value="assets" />
+              <button id="assets-clear" class="assets-clear" type="button" title="清空">×</button>
+            </div>
+          </label>
+          <label class="field naming-mode-field">
+            <span>命名方式</span>
+            <div id="naming-dropdown" class="dropdown">
+              <button
+                type="button"
+                class="dropdown-trigger"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              >
+                <span class="dropdown-value">保留原文件名</span>
+                <span class="dropdown-arrow"></span>
+              </button>
+              <div class="dropdown-panel" role="listbox">
+                <button type="button" class="dropdown-item" data-value="original">
+                  保留原文件名
+                </button>
+                <button type="button" class="dropdown-item" data-value="sequence">
+                  递增序号
+                </button>
+                <button type="button" class="dropdown-item" data-value="prefix">
+                  前缀+序号
+                </button>
+                <button type="button" class="dropdown-item" data-value="fixed">
+                  固定名称
+                </button>
+                <button type="button" class="dropdown-item" data-value="hash">
+                  哈希命名
+                </button>
+                <button type="button" class="dropdown-item" data-value="date">
+                  日期时间
+                </button>
+                <button type="button" class="dropdown-item" data-value="uuid">
+                  UUID
+                </button>
+              </div>
+            </div>
+            <select id="naming-mode" class="native-select" aria-hidden="true" tabindex="-1">
+              <option value="original">保留原文件名</option>
+              <option value="sequence">递增序号</option>
+              <option value="prefix">前缀+序号</option>
+              <option value="fixed">固定名称</option>
+              <option value="hash">哈希命名</option>
+              <option value="date">日期时间</option>
+              <option value="uuid">UUID</option>
+            </select>
+          </label>
+          <label class="field naming-extra naming-prefix">
+            <span id="naming-prefix-label">前缀 / 固定名</span>
+            <input id="naming-prefix" type="text" value="img" placeholder="如: cover" />
+          </label>
+          <label class="field naming-extra naming-start">
+            <span>起始序号</span>
+            <input id="naming-start" type="number" min="1" value="1" />
+          </label>
+        </div>
+        <div class="row row-inputs">
+          <label class="field checkbox">
+            <input id="backup-enabled" type="checkbox" />
+            <span>备份原文件</span>
+          </label>
+          <label class="field checkbox">
+            <input id="delete-old" type="checkbox" />
+            <span>删除旧图片</span>
+          </label>
+        </div>
+        <div class="row row-run">
+          <div class="button-group">
+            <button id="btn-run" class="btn primary">开始处理</button>
+            <button id="btn-cancel" class="btn ghost">取消</button>
+          </div>
+          <div class="progress">
+            <div id="progress-bar" class="progress-bar"></div>
+            <span id="progress-text" class="progress-text">待开始</span>
+          </div>
+          <span class="hint">支持一次选择多个文件或文件夹</span>
+        </div>
+      </section>
+
+      <section class="panel result">
+        <div class="result-header">
+          <h2>处理结果</h2>
+          <span class="result-tip">明细支持滚动查看</span>
+        </div>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-title">暂无处理结果</div>
+          <div class="empty-desc">选择文件或文件夹并点击“开始处理”</div>
+        </div>
+        <div id="summary" class="summary"></div>
+        <div id="details" class="details"></div>
+      </section>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

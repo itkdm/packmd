@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>PackMD - Markdown 图片打包工具 | uTools 插件 | 批量处理图片资源</title>
+  <meta name="title" content="PackMD - Markdown 图片打包工具 | uTools 插件">
+  <meta name="description" content="PackMD 是一款强大的 uTools 插件，用于批量扫描 Markdown 文件中的图片引用，自动复制到本地 assets 目录并重写链接。支持多文件处理、智能去重、可选备份、7种命名方式，让 Markdown 图片管理更简单高效。">
+  <meta name="keywords" content="PackMD, Markdown, 图片打包, uTools插件, Markdown图片管理, 图片资源归档, 批量处理图片, Markdown工具, 图片路径重写, 图片去重, assets目录, 文档工具">
+  <meta name="author" content="布吉岛">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="Chinese">
+  <meta name="revisit-after" content="7 days">
+  <meta name="theme-color" content="#0f766e">
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://itkdm.github.io/packmd/">
+  
+  <!-- Alternate Languages -->
+  <link rel="alternate" hreflang="zh-CN" href="https://itkdm.github.io/packmd/">
+  <link rel="alternate" hreflang="en" href="https://itkdm.github.io/packmd/">
+  <link rel="alternate" hreflang="x-default" href="https://itkdm.github.io/packmd/">
+  
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" href="https://itkdm.github.io/packmd/sitemap.xml">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./logo.png">
+  <link rel="apple-touch-icon" href="./logo.png">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://itkdm.github.io/packmd/">
+  <meta property="og:title" content="PackMD - Markdown 图片打包工具 | uTools 插件">
+  <meta property="og:description" content="PackMD 是一款强大的 uTools 插件，用于批量扫描 Markdown 文件中的图片引用，自动复制到本地 assets 目录并重写链接。支持多文件处理、智能去重、可选备份、7种命名方式。">
+  <meta property="og:image" content="https://itkdm.github.io/packmd/logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PackMD Logo">
+  <meta property="og:site_name" content="PackMD">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale:alternate" content="en_US">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://itkdm.github.io/packmd/">
+  <meta name="twitter:title" content="PackMD - Markdown 图片打包工具 | uTools 插件">
+  <meta name="twitter:description" content="PackMD 是一款强大的 uTools 插件，用于批量扫描 Markdown 文件中的图片引用，自动复制到本地 assets 目录并重写链接。支持多文件处理、智能去重、可选备份、7种命名方式。">
+  <meta name="twitter:image" content="https://itkdm.github.io/packmd/logo.png">
+  <meta name="twitter:image:alt" content="PackMD Logo">
+  <meta name="twitter:creator" content="@itkdm">
+  
+  <!-- Additional Meta Tags -->
+  <meta name="application-name" content="PackMD">
+  <meta name="apple-mobile-web-app-title" content="PackMD">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PackMD",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "CNY"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1"
+    },
+    "description": "PackMD 是一款强大的 uTools 插件，用于批量扫描 Markdown 文件中的图片引用，自动复制到本地 assets 目录并重写链接。支持多文件处理、智能去重、可选备份、7种命名方式，让 Markdown 图片管理更简单高效。",
+    "url": "https://itkdm.github.io/packmd/",
+    "author": {
+      "@type": "Person",
+      "name": "布吉岛"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "布吉岛"
+    },
+    "softwareVersion": "0.2.0",
+    "datePublished": "2024-01-01",
+    "dateModified": "2026-01-01",
+    "keywords": "Markdown, 图片打包, uTools插件, 图片管理, 批量处理",
+    "featureList": [
+      "批量扫描 Markdown 文件",
+      "自动复制图片到 assets 目录",
+      "智能路径重写",
+      "重复图片去重",
+      "可选备份功能",
+      "7种图片命名方式",
+      "多文件/文件夹支持"
+    ],
+    "screenshot": "https://itkdm.github.io/packmd/logo.png",
+    "downloadUrl": "https://github.com/itkdm/packmd/releases"
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PackMD",
+    "url": "https://itkdm.github.io/packmd/",
+    "description": "PackMD - Markdown 图片打包工具，批量处理图片资源，智能去重，支持多种命名方式",
+    "inLanguage": ["zh-CN", "en"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://itkdm.github.io/packmd/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PackMD",
+    "url": "https://itkdm.github.io/packmd/",
+    "logo": "https://itkdm.github.io/packmd/logo.png",
+    "sameAs": [
+      "https://github.com/itkdm/packmd"
+    ]
+  }
+  </script>
+  
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+    }
+    
+    :root {
+      --primary: #0f766e;
+      --primary-hover: #0b5f56;
+      --bg: #f2f7f8;
+      --bg-gradient: linear-gradient(135deg, #f2f7f8 0%, #f9f4ec 45%, #f1fbf6 100%);
+      --surface: #ffffff;
+      --border: rgba(15, 118, 110, 0.16);
+      --border-light: rgba(15, 118, 110, 0.08);
+      --text-primary: #1c262b;
+      --text-secondary: #59666d;
+      --text-tertiary: #8b949e;
+      --accent: #0f766e;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 12px 28px rgba(15, 34, 41, 0.08);
+      --radius: 0.75rem;
+      --radius-sm: 0.5rem;
+    }
+    
+    body {
+      font-family: "HarmonyOS Sans SC", "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* ============================================
+       顶部导航栏
+       ============================================ */
+    .nav-header {
+      position: sticky;
+      top: 0;
+      background: transparent;
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      z-index: 100;
+    }
+    
+    .nav-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    
+    .nav-logo {
+      height: 32px;
+      width: 32px;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .nav-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+    
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .btn {
+      padding: 0.55rem 1.05rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border: 1px solid transparent;
+      line-height: 1.1;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+    
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--bg);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    
+    .lang-btn {
+      min-width: 78px;
+    }
+    
+    /* ============================================
+       Hero区域
+       ============================================ */
+    .hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 120px 24px 80px;
+      text-align: center;
+      min-height: calc(100vh - 64px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.03em;
+    }
+    
+    .hero p {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    /* ============================================
+       功能特性区域
+       ============================================ */
+    .features {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 3rem;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .feature-card {
+      background: var(--surface);
+      padding: 2rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-md);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(15, 118, 110, 0.1);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+    
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+    
+    /* ============================================
+       使用说明区域
+       ============================================ */
+    .usage {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      background: var(--surface);
+    }
+    
+    .usage-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .usage-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .usage-step {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    
+    .step-number {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.125rem;
+    }
+    
+    .step-content h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .step-content p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    /* ============================================
+       命名方式说明
+       ============================================ */
+    .naming-modes {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    
+    .modes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .mode-item {
+      background: var(--surface);
+      padding: 1.25rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+      text-align: center;
+    }
+    
+    .mode-item strong {
+      display: block;
+      color: var(--text-primary);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .mode-item span {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+    
+    /* ============================================
+       Footer
+       ============================================ */
+    .footer {
+      background: transparent;
+      padding: 3rem 24px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+    
+    /* ============================================
+       响应式设计
+       ============================================ */
+    @media (max-width: 768px) {
+      .nav-container {
+        padding: 0 16px;
+        height: auto;
+        min-height: 64px;
+        flex-wrap: wrap;
+        padding-top: 12px;
+        padding-bottom: 12px;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .hero {
+        padding: 80px 16px 48px;
+        min-height: calc(100vh - 64px);
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1.125rem;
+      }
+      
+      .features,
+      .usage,
+      .naming-modes {
+        padding: 48px 16px;
+      }
+      
+      .section-title {
+        font-size: 1.75rem;
+      }
+      
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .usage-step {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero {
+        padding: 60px 16px 40px;
+      }
+      
+      .hero h1 {
+        font-size: 1.75rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+      
+      .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8125rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 顶部导航栏 -->
+  <nav class="nav-header">
+    <div class="nav-container">
+      <a href="./index.html" class="nav-brand">
+        <img src="./logo.png" alt="PackMD Logo" class="nav-logo" />
+        <span>PackMD</span>
+      </a>
+      
+      <div class="nav-links">
+        <a href="#features" class="nav-link" data-i18n="nav.features">功能特性</a>
+        <a href="#usage" class="nav-link" data-i18n="nav.usage">使用说明</a>
+      </div>
+      
+      <div class="nav-actions">
+        <a href="https://github.com/itkdm/packmd" class="btn btn-primary" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://github.com/itkdm/packmd/issues" class="btn btn-secondary" target="_blank" rel="noopener" data-i18n="nav.contribute">贡献</a>
+        <button id="langToggle" class="btn btn-secondary lang-btn" type="button" data-i18n="nav.lang">English</button>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Hero区域 -->
+  <section class="hero">
+    <h1 data-i18n="hero.title">PackMD</h1>
+    <p data-i18n="hero.desc">扫描 Markdown 图片引用，复制为本地 assets 并重写链接，支持多文件与可选备份。批量处理，智能去重，让 Markdown 图片管理更简单。</p>
+    <div class="hero-actions">
+      <a href="https://github.com/itkdm/packmd/releases" class="btn btn-primary" data-i18n="hero.btn.download">下载插件</a>
+      <a href="#usage" class="btn btn-secondary" data-i18n="hero.btn.docs">查看文档</a>
+    </div>
+  </section>
+
+  <!-- 功能特性 -->
+  <section id="features" class="features">
+    <h2 class="section-title" data-i18n="features.title">核心功能</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📁</div>
+        <h3 data-i18n="features.batch.title">批量处理</h3>
+        <p data-i18n="features.batch.desc">支持一次选择多个 Markdown 文件或文件夹，自动扫描所有图片引用，高效处理大量文件。</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h3 data-i18n="features.archive.title">资源归档</h3>
+        <p data-i18n="features.archive.desc">自动将图片复制到统一的资源目录（如 assets），保持项目结构整洁，便于管理。</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3 data-i18n="features.rewrite.title">路径重写</h3>
+        <p data-i18n="features.rewrite.desc">智能识别图片路径，自动重写为相对路径，确保文档可移植性和可读性。</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3 data-i18n="features.dedup.title">智能去重</h3>
+        <p data-i18n="features.dedup.desc">自动检测重复图片，复用已存在的文件，避免重复复制，节省存储空间。</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <h3 data-i18n="features.backup.title">可选备份</h3>
+        <p data-i18n="features.backup.desc">处理前可选择备份原文件，确保数据安全，随时可以恢复原始状态。</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3 data-i18n="features.naming.title">多种命名</h3>
+        <p data-i18n="features.naming.desc">支持 7 种命名方式：保留原文件名、递增序号、前缀+序号、固定名称、哈希、日期时间、UUID。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 使用说明 -->
+  <section id="usage" class="usage">
+    <div class="usage-content">
+      <h2 class="section-title" data-i18n="usage.title">使用说明</h2>
+      <div class="usage-steps">
+        <div class="usage-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3 data-i18n="usage.step1.title">选择目标</h3>
+            <p data-i18n="usage.step1.desc">点击"选择文件"或"选择文件夹"按钮，选择一个或多个 Markdown 文件或包含 Markdown 文件的文件夹。</p>
+          </div>
+        </div>
+        
+        <div class="usage-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3 data-i18n="usage.step2.title">配置选项</h3>
+            <p data-i18n="usage.step2.desc">设置资源目录名称（默认为 assets），选择图片命名方式，根据需要开启备份和删除旧图片选项。</p>
+          </div>
+        </div>
+        
+        <div class="usage-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3 data-i18n="usage.step3.title">开始处理</h3>
+            <p data-i18n="usage.step3.desc">点击"开始处理"按钮，插件会自动扫描图片、复制文件、重写链接，并显示详细的处理结果。</p>
+          </div>
+        </div>
+        
+        <div class="usage-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3 data-i18n="usage.step4.title">查看结果</h3>
+            <p data-i18n="usage.step4.desc">处理完成后，可以在结果面板查看处理统计信息，包括处理的文件数、发现的图片数、复制数量等。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 命名方式说明 -->
+  <section class="naming-modes">
+    <h2 class="section-title" data-i18n="naming.title">命名方式</h2>
+    <div class="modes-grid">
+      <div class="mode-item">
+        <strong data-i18n="naming.original">保留原文件名</strong>
+        <span data-i18n="naming.original.desc">保持图片原始文件名不变</span>
+      </div>
+      <div class="mode-item">
+        <strong data-i18n="naming.sequence">递增序号</strong>
+        <span data-i18n="naming.sequence.desc">按顺序命名为 1.jpg, 2.png...</span>
+      </div>
+      <div class="mode-item">
+        <strong data-i18n="naming.prefix">前缀+序号</strong>
+        <span data-i18n="naming.prefix.desc">img-1.jpg, img-2.png...</span>
+      </div>
+      <div class="mode-item">
+        <strong data-i18n="naming.fixed">固定名称</strong>
+        <span data-i18n="naming.fixed.desc">使用固定名称+序号</span>
+      </div>
+      <div class="mode-item">
+        <strong data-i18n="naming.hash">哈希命名</strong>
+        <span data-i18n="naming.hash.desc">使用文件内容哈希值</span>
+      </div>
+      <div class="mode-item">
+        <strong data-i18n="naming.date">日期时间</strong>
+        <span data-i18n="naming.date.desc">使用日期时间戳命名</span>
+      </div>
+      <div class="mode-item">
+        <strong data-i18n="naming.uuid">UUID</strong>
+        <span data-i18n="naming.uuid.desc">使用 UUID 唯一标识</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p data-i18n="footer.tagline">PackMD - 让 Markdown 图片管理更简单</p>
+    <p style="margin-top: 0.5rem; font-size: 0.8125rem; color: var(--text-tertiary);">
+      © 2026 布吉岛
+    </p>
+  </footer>
+
+  <script>
+    // 多语言翻译数据
+    const translations = {
+      zh: {
+        'nav.features': '功能特性',
+        'nav.usage': '使用说明',
+        'nav.contribute': '贡献',
+        'nav.lang': 'English',
+        'hero.badge': 'uTools 插件',
+        'hero.title': 'PackMD',
+        'hero.desc': '扫描 Markdown 图片引用，复制为本地 assets 并重写链接，支持多文件与可选备份。批量处理，智能去重，让 Markdown 图片管理更简单。',
+        'hero.chip.batch': '批量扫描',
+        'hero.chip.archive': '资源归档',
+        'hero.chip.rewrite': '路径重写',
+        'hero.chip.dedup': '重复去重',
+        'hero.chip.backup': '可选备份',
+        'hero.chip.naming': '多种命名',
+        'hero.btn.download': '下载插件',
+        'hero.btn.docs': '查看文档',
+        'features.title': '核心功能',
+        'features.batch.title': '批量处理',
+        'features.batch.desc': '支持一次选择多个 Markdown 文件或文件夹，自动扫描所有图片引用，高效处理大量文件。',
+        'features.archive.title': '资源归档',
+        'features.archive.desc': '自动将图片复制到统一的资源目录（如 assets），保持项目结构整洁，便于管理。',
+        'features.rewrite.title': '路径重写',
+        'features.rewrite.desc': '智能识别图片路径，自动重写为相对路径，确保文档可移植性和可读性。',
+        'features.dedup.title': '智能去重',
+        'features.dedup.desc': '自动检测重复图片，复用已存在的文件，避免重复复制，节省存储空间。',
+        'features.backup.title': '可选备份',
+        'features.backup.desc': '处理前可选择备份原文件，确保数据安全，随时可以恢复原始状态。',
+        'features.naming.title': '多种命名',
+        'features.naming.desc': '支持 7 种命名方式：保留原文件名、递增序号、前缀+序号、固定名称、哈希、日期时间、UUID。',
+        'usage.title': '使用说明',
+        'usage.step1.title': '选择目标',
+        'usage.step1.desc': '点击"选择文件"或"选择文件夹"按钮，选择一个或多个 Markdown 文件或包含 Markdown 文件的文件夹。',
+        'usage.step2.title': '配置选项',
+        'usage.step2.desc': '设置资源目录名称（默认为 assets），选择图片命名方式，根据需要开启备份和删除旧图片选项。',
+        'usage.step3.title': '开始处理',
+        'usage.step3.desc': '点击"开始处理"按钮，插件会自动扫描图片、复制文件、重写链接，并显示详细的处理结果。',
+        'usage.step4.title': '查看结果',
+        'usage.step4.desc': '处理完成后，可以在结果面板查看处理统计信息，包括处理的文件数、发现的图片数、复制数量等。',
+        'naming.title': '命名方式',
+        'naming.original': '保留原文件名',
+        'naming.original.desc': '保持图片原始文件名不变',
+        'naming.sequence': '递增序号',
+        'naming.sequence.desc': '按顺序命名为 1.jpg, 2.png...',
+        'naming.prefix': '前缀+序号',
+        'naming.prefix.desc': 'img-1.jpg, img-2.png...',
+        'naming.fixed': '固定名称',
+        'naming.fixed.desc': '使用固定名称+序号',
+        'naming.hash': '哈希命名',
+        'naming.hash.desc': '使用文件内容哈希值',
+        'naming.date': '日期时间',
+        'naming.date.desc': '使用日期时间戳命名',
+        'naming.uuid': 'UUID',
+        'naming.uuid.desc': '使用 UUID 唯一标识',
+        'footer.tagline': 'PackMD - 让 Markdown 图片管理更简单'
+      },
+      en: {
+        'nav.features': 'Features',
+        'nav.usage': 'Usage',
+        'nav.contribute': 'Contribute',
+        'nav.lang': '中文',
+        'hero.badge': 'uTools Plugin',
+        'hero.title': 'PackMD',
+        'hero.desc': 'Scan Markdown image references, copy them to local assets and rewrite links, supporting multiple files and optional backup. Batch processing, smart deduplication, making Markdown image management easier.',
+        'hero.chip.batch': 'Batch Scan',
+        'hero.chip.archive': 'Resource Archive',
+        'hero.chip.rewrite': 'Path Rewrite',
+        'hero.chip.dedup': 'Deduplication',
+        'hero.chip.backup': 'Optional Backup',
+        'hero.chip.naming': 'Multiple Naming',
+        'hero.btn.download': 'Download',
+        'hero.btn.docs': 'Documentation',
+        'features.title': 'Core Features',
+        'features.batch.title': 'Batch Processing',
+        'features.batch.desc': 'Support selecting multiple Markdown files or folders at once, automatically scan all image references, efficiently process large numbers of files.',
+        'features.archive.title': 'Resource Archive',
+        'features.archive.desc': 'Automatically copy images to a unified resource directory (such as assets), keeping the project structure clean and easy to manage.',
+        'features.rewrite.title': 'Path Rewrite',
+        'features.rewrite.desc': 'Intelligently identify image paths, automatically rewrite to relative paths, ensuring document portability and readability.',
+        'features.dedup.title': 'Smart Deduplication',
+        'features.dedup.desc': 'Automatically detect duplicate images, reuse existing files, avoid duplicate copying, save storage space.',
+        'features.backup.title': 'Optional Backup',
+        'features.backup.desc': 'Choose to backup original files before processing, ensure data security, and restore original state at any time.',
+        'features.naming.title': 'Multiple Naming',
+        'features.naming.desc': 'Support 7 naming methods: keep original filename, incremental sequence, prefix + sequence, fixed name, hash, date-time, UUID.',
+        'usage.title': 'Usage Guide',
+        'usage.step1.title': 'Select Target',
+        'usage.step1.desc': 'Click the "Select Files" or "Select Folders" button to select one or more Markdown files or folders containing Markdown files.',
+        'usage.step2.title': 'Configure Options',
+        'usage.step2.desc': 'Set the resource directory name (default is assets), select image naming method, and enable backup and delete old images options as needed.',
+        'usage.step3.title': 'Start Processing',
+        'usage.step3.desc': 'Click the "Start Processing" button, the plugin will automatically scan images, copy files, rewrite links, and display detailed processing results.',
+        'usage.step4.title': 'View Results',
+        'usage.step4.desc': 'After processing is complete, you can view processing statistics in the results panel, including the number of files processed, images found, copies made, etc.',
+        'naming.title': 'Naming Methods',
+        'naming.original': 'Keep Original',
+        'naming.original.desc': 'Keep the original filename unchanged',
+        'naming.sequence': 'Incremental Sequence',
+        'naming.sequence.desc': 'Name sequentially as 1.jpg, 2.png...',
+        'naming.prefix': 'Prefix + Sequence',
+        'naming.prefix.desc': 'img-1.jpg, img-2.png...',
+        'naming.fixed': 'Fixed Name',
+        'naming.fixed.desc': 'Use fixed name + sequence',
+        'naming.hash': 'Hash Naming',
+        'naming.hash.desc': 'Use file content hash value',
+        'naming.date': 'Date Time',
+        'naming.date.desc': 'Use date-time stamp naming',
+        'naming.uuid': 'UUID',
+        'naming.uuid.desc': 'Use UUID unique identifier',
+        'footer.tagline': 'PackMD - Making Markdown Image Management Easier'
+      }
+    };
+
+    // 当前语言
+    let currentLang = localStorage.getItem('lang') || 'zh';
+
+    // 翻译函数
+    function t(key) {
+      return translations[currentLang][key] || translations['zh'][key] || key;
+    }
+
+    // 更新页面文本
+    function updatePageText() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const text = t(key);
+        if (text) {
+          if (el.tagName === 'INPUT' && el.type === 'button') {
+            el.value = text;
+          } else {
+            el.textContent = text;
+          }
+        }
+      });
+    }
+
+    // 初始化
+    updatePageText();
+
+    // 语言切换按钮
+    document.getElementById('langToggle')?.addEventListener('click', function() {
+      currentLang = currentLang === 'zh' ? 'en' : 'zh';
+      localStorage.setItem('lang', currentLang);
+      updatePageText();
+    });
+  </script>
+</body>
+</html>
